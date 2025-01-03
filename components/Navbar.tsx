@@ -15,11 +15,11 @@ export function Navbar() {
 
   const routes = [
     { href: "/", label: "Home" },
-    { href: "/temperature", label: "Temperatura" },
+    { href: "/temperature", label: "Temperature" },
     { href: "/co2", label: "CO2" },
-    { href: "/methane", label: "Metano" },
+    { href: "/methane", label: "Methane" },
     { href: "/no2", label: "NO2" },
-    { href: "/arctic-ice", label: "Ghiaccio Polare" },
+    { href: "/arctic-ice", label: "Polar Ice" },
   ];
 
   return (
