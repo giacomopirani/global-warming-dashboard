@@ -1,6 +1,7 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { Menu, Thermometer } from "lucide-react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -24,8 +25,14 @@ export function Navbar() {
 
   return (
     <nav className="flex items-center justify-between w-full">
-      <Link href="/" className="text-xl font-bold">
-        Global Warming
+      <Link
+        href="/"
+        className="flex items-center space-x-2 text-xl font-bold text-pimary"
+      >
+        <Thermometer className="h-6 w-6 text-red-500" />
+        <span className="bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent">
+          Global Warming
+        </span>
       </Link>
       <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
         {routes.map((route) => (
