@@ -1,8 +1,8 @@
-import "@/app/globals.css";
 import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Geist, Azeret_Mono as Geist_Mono } from "next/font/google";
+import "./globals.css";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Global Warming Dashboard",
-  description: "Visualization of global warming data",
+  description: "Visualizzazione dati sul riscaldamento globale",
 };
 
 export default function RootLayout({
@@ -25,6 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" suppressHydrationWarning className="dark">
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
@@ -34,13 +40,13 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <div className="flex min-h-screen flex-col">
-            <header className="border-b">
-              <div className="container flex h-16 items-center">
+          <div className="relative min-h-screen overflow-x-hidden">
+            <header className="sticky top-0 z-50 w-full border-b bg-background">
+              <div className="mx-auto max-w-screen-2xl px-4">
                 <Navbar />
               </div>
             </header>
-            <main className="flex-1">{children}</main>
+            <main className="overflow-x-hidden">{children}</main>
           </div>
         </ThemeProvider>
       </body>

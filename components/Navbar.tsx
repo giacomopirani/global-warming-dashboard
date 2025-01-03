@@ -1,7 +1,6 @@
 "use client";
 
 import { Menu, Thermometer } from "lucide-react";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -24,23 +23,23 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="flex items-center justify-between w-full">
+    <nav className="flex items-center justify-between w-full h-16">
       <Link
         href="/"
-        className="flex items-center space-x-2 text-xl font-bold text-pimary"
+        className="flex items-center space-x-2 text-xl font-bold text-primary"
       >
         <Thermometer className="h-6 w-6 text-red-500" />
         <span className="bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent">
           Global Warming
         </span>
       </Link>
-      <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
+      <div className="hidden lg:flex items-center gap-2">
         {routes.map((route) => (
           <Link
             key={route.href}
             href={route.href}
             className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
+              "text-sm font-medium transition-colors hover:text-primary px-3 py-2",
               pathname === route.href ? "text-primary" : "text-muted-foreground"
             )}
           >
@@ -50,7 +49,7 @@ export function Navbar() {
       </div>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" className="md:hidden" size="icon">
+          <Button variant="ghost" className="lg:hidden" size="icon">
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle menu</span>
           </Button>
@@ -62,7 +61,7 @@ export function Navbar() {
                 key={route.href}
                 href={route.href}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
+                  "text-sm font-medium transition-colors hover:text-primary px-3 py-2",
                   pathname === route.href
                     ? "text-primary"
                     : "text-muted-foreground"
