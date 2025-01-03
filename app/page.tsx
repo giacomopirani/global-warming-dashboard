@@ -1,101 +1,80 @@
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+const charts = [
+  {
+    title: "Temperature",
+    description: "Global temperature data",
+    href: "/temperature",
+  },
+  {
+    title: "CO2",
+    description: "Atmospheric carbon dioxide levels",
+    href: "/co2",
+  },
+  {
+    title: "Methane",
+    description: "Atmospheric methane concentrations",
+    href: "/methane",
+  },
+  {
+    title: "NO2",
+    description: "Atmospheric nitrogen dioxide levels",
+    href: "/no2",
+  },
+  {
+    title: "Polar Ice",
+    description: "Arctic ice extent",
+    href: "/arctic-ice",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="container py-8 flex flex-col items-center">
+      <h1 className="text-4xl font-bold mb-8 text-center">Dashboard</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <div className="mb-8">
+        <Image
+          src="/global-warming.jpg"
+          alt="Global Warming Illustration"
+          width={400}
+          height={400}
+          className="rounded-full"
+        />
+      </div>
+
+      <p className="text-center max-w-2xl mb-8">
+        Welcome to our global warming dashboard. Here, you can explore critical
+        data on various aspects of climate change, including global
+        temperatures, atmospheric CO2 and methane levels, NO2 concentrations,
+        and polar ice extent. Use the buttons below to access detailed charts on
+        each topic.
+      </p>
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {charts.map((chart) => (
+          <Card key={chart.href}>
+            <CardHeader>
+              <CardTitle>{chart.title}</CardTitle>
+              <CardDescription>{chart.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Link href={chart.href}>
+                <Button className="w-full">View Chart</Button>
+              </Link>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }
